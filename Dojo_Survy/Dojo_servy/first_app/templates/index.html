@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+</head>
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+    }
+    .layth{
+        display: flex;
+        width: 400px;
+        justify-content: center;
+        border: 1px solid black;
+        height: 300px;
+    }
+</style>
+<body>
+    <div class="layth">
+        <form action='/result' method='post'>
+            {% csrf_token %}
+        Your Name: <input type='text' name='name'><br>
+
+        <label for="">Dojo Location :</label>
+        <select name ='location'>Dojo Location
+            <option value="San Jose" >San Jose</option>
+        </select><br>
+        
+        <label >Favorite languges :</label>
+        <select name= 'fav'>Favorite languges
+            <option value="python" >python</option>
+            <option value="java" >java</option>
+            <option value="c++" >c++</option>
+            <option value="ract" >react</option>
+
+        </select><br>
+        <label for="comment">comment :</label><br>
+        <textarea name="comment" id="" cols="30" rows="10"></textarea><br>
+        <button style="float: right ; border-bottom:2px solid black;">Button</button>
+    </div>   
+</form>
+
+
+</body>
+</html>
