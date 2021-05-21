@@ -12,8 +12,9 @@
 <body>
     <main>
     <h1>Counter : </h1>  
-    <h3>{{request.session.counter}} time(s) </h3>
-    <form action="/destroy_session" method="GET">
+    <h3> Time {{request.session.counter}} </h3>
+    <form action="/destroy" method="POST">
+        {%csrf_token%}
     <button>Reset Counter</button>
     </form>
     </main>
