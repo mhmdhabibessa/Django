@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thought Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+          crossorigin="anonymous">
+          {% load static %}
+          <style>
+              .logout{
+                  margin: 10px;
+                  font-size: 25px;
+              }
+              .thoughtp{
+                border: solid black 3px; 
+                display: inline-block;
+                width: 400px;
+                margin-left: 15px;
+
+              }
+              .head{
+                  font-size: 20px;
+              }
+          </style>
+</head>
+<body>
+    <div style="text-align: right;">
+    <a class="logout" href="/thoughts">DashBoard</a>
+    <a class="logout" href="/logout" >Log out</a></div>
+    <div class="head">{{thought.posted.first_name}} says:   <p class="thoughtp">{{thought.thought}}</p></div>
+    <a class="btn btn-primary" href="/thoughts/like/{{thought.id}}">Like</a>
+    <a class="btn btn-secondary" href="/thoughts/unlike/{{thought.id}}">Unlike</a>
+
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for likes in thought.liked.all %}
+                <tr>
+                    <td>{{likes.first_name}}</td>
+                    <td>{{likes.last_name}} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+</body>
+</html>

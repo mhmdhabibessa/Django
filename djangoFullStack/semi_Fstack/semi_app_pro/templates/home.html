@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #aa{
+            font-size: 34px;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>TV Show  {{this_show.id}} </h1>
+    <a href="/go_back" id="aa"> Go back </a>
+    
+    titel : {{this_show.title}} <br>
+    networke : {{this_show.network}} <br>
+    Discripton : {{this_show.discripton}} <br>
+    relaied time :{{this_show.relaied_time}} <br>
+    
+    
+    <div>
+        <a href="/shows/{{this_show.id}}/edit"> Edit </a> || <a href="/delete/{{this_show.id}}"> Delete </a>
+
+    </div>
+
+</body>
+</html>

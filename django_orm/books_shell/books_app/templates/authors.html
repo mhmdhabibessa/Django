@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+</head>
+<body>
+    <div class="form">
+        <div>
+        <h1>Add a Book</h1>
+        <form action="/addauthor" method="POST">
+            {% csrf_token %}
+            <label for="fname">FIrst Name</label>
+            <input type="text" name="fname"><br><br>
+            <label for="lname">Last Name</label>
+            <input type="text" name="lname"><br><br>
+            <label for="notes">Notes</label>
+            <textarea name="notes"></textarea><br><br>
+            <input type="submit">
+        </form>
+        </div>
+
+        <div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                    {%for i in x%}
+                <tr>
+                    <th>{{i.id}}</th>
+                    <th>{{i.first_name}} {{i.last_name}}</th>
+                    <th><a href="/authors/{{i.id}}">view</a></th>
+                </tr>
+                    {%endfor%}
+               
+              </table>
+        </div>
+    </div>
+</body>
+</html>

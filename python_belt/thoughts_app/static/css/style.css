@@ -1,0 +1,29 @@
+.post{
+    border: solid black 3px; 
+    display: inline-block;
+    width: 400px;
+    margin-left: 15px;
+    height: auto;
+
+
+  }
+  textarea{
+    border: black solid 3px;
+    margin-right: 10px;
+  }
+  .logout{
+      margin: 10px;
+      font-size: 25px;
+  }
+  form{
+      border-bottom: solid black 3px;
+      width: 1200px;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+  }
+  body{
+      margin-left: 20px;
+  }
+  .main{
+    width: 900px;
+  }

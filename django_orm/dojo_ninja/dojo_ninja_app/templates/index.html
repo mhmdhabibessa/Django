@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> users_ </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body{
+        background-color: rgb(214, 217, 218);
+        }
+    .counter {
+        display: flex;
+        margin: 100px;
+        }
+        .left{
+            width: 100%;
+        }
+        .right {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter"> 
+        <div class="left">
+            <h1>Add a Dojo</h1>
+        <form action="show" method="POST">
+            {% csrf_token %} 
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name :</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter your name" name="name" > 
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">City:</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="your city " name="city" > 
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">state:</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="your state " name="state" > 
+              </div>
+        
+            <center> <button type="submit" class="btn btn-primary">Submit:</button></center>
+          </form>
+        </div>
+
+        <div class="right" >
+            <h1>Add a ninja</h1>
+            <form action="show2" method="POST"  >
+              {% csrf_token %}
+                <div class="form-group">
+                  <label for="exampleInputEmail1">First_name :</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="first_name"   > 
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Last_name:</label>
+                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password" name="last_name" > 
+                </div>
+                <div class="form-group">    
+                  <label for="exampleInputPassword1">Dojo:</label>
+                  <select name="select"  class="form-control" aria-label=".form-select-lg example">
+                   
+                    {% for dojos in dojos_count %}
+                    <option value={{dojos.id}}>{{dojos.name}}</option>
+                   {% endfor %}
+                   
+                  </select>
+                  </div>
+            
+              <center> <button type="submit" class="btn btn-primary">Submit</button></center> 
+              </form>
+        </div>
+
+
+
+    </div>
+
+                <div style="text-align: center;"><h1>All the Dojos  </h1> 
+                {% for doj in dojos_count %}
+              <h3> Ninjas at the {{doj.name}}</h3>
+                {% for ninja in doj.ninjas.all %} 
+                <ul>
+                <li><h5>{{ninja.first_name}} {{ninja.last_name}} </h5></li>
+              </ul>
+                {% endfor %}
+                {% endfor %}
+              </div>
+               
+    
+    
+
+
+</body>
+</html>

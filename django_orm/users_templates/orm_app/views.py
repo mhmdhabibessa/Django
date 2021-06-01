@@ -15,3 +15,13 @@ def accec(request):
     age=request.POST['age'])
     newly_created_movie.save()
     return redirect('/')
+
+
+def show(request,id): 
+    context = { 
+        
+        "num" : users.objects.get(id=id)
+        
+    }
+    return render(request,"index2.html",context)
+

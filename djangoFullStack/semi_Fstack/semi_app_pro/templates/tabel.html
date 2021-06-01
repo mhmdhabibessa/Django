@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+
+<style>
+  #aaa{
+    font-size: 28px;
+  }
+    h1 {
+        text-align: center;
+    }
+    button {
+        text-align: center;
+    }
+    body {
+      background-color: rgb(255, 255, 255);
+    }
+</style>
+<body>
+  
+    <h1 > All the Shows  </h1>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">titel</th>
+            <th scope="col">network</th>
+            <th scope="col">relaied_time</th>
+            <th scope="col">Actions</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for data in all_count %}
+            <th scope="row"> {{data.id}}</th>
+            <td>  {{data.title}} </td>
+            <td> {{data.relaied_time}}</td>
+            <td>  {{data.discripton}}</td>
+            <td> <a href="/shows/{{data.id}}" > shown</a> || <a href="/shows/{{data.id}}/edit">edit </a>  || <a href="/delete/{{data.id}}"> Delete </a>  </td>
+           
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+      <hr>
+       <a id="aaa" href="/home"> Add a new show </a>
+      </div>
+
+</body>
+</html>

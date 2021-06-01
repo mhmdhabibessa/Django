@@ -1,17 +1,58 @@
 from django.shortcuts import render, HttpResponse,redirect
+from .models import User
 def index(request):
+    if 'new_user' in request.session:
+        return  redirect('/welcom')
     return render(request,'home.html')
+
+           
 def login(request):
-    if request.method == 'POST':
+   
+    username = request.POST['username']
+    password = request.POST['password']
+    users = User.objects.filter(username= username)
 
-        username = request.POST['username] 
-        password = request.POST['pass'] 
-        if user_name is not "":
-            request.session['user_name']  = username 
-            return redirect('/welcom')
-        return HttpResponse(" yes we are done ")    
-    return HttpResponse("test is the best to learn  ")        
+    if len(users) == 0 : 
+        return redirect('/')
 
-def welcom(request): 
-    full_name = request.session['user_name']
-    return HttpResponse(" welcom " )        
+    user = users.first()
+    if user.password != password:
+        return redirect('/')
+
+    context = {
+                'show' : user
+        }
+
+        
+    return render(request,'welcom.html',context)    
+
+
+
+
+def register(request):
+    username = request.POST['username']
+    email = request.POST['email']
+    password = request.POST['password']
+    address = request.POST ['address']
+    User.objects.create(username = username, password = password, address= address, email  = email)
+    data = {
+        "username": username,
+        "password": password,
+        "address" : address,
+        "email"   : email
+        }
+    request.session['new_user'] = data
+    return redirect('/welcom')
+    
+
+def welcom(request):
+    if 'new_user' in request.session:
+        username = request.session['new_user']
+        return render(request,"welcom.html")
+
+    return redirect("/")
+
+def log_out(request):
+    if 'new_user' in request.session:
+        request.session.clear()
+    return redirect("/")   

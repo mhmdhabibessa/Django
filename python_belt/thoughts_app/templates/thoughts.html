@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+          crossorigin="anonymous">
+          {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="" style="display: flex; justify-content: space-between;">
+        <h1>Hi {{request.session.first_name}} {{request.session.last_name}} !</h1>
+        <a class="logout" href="/logout" >Log out</a>
+        
+    </div>
+    <form action="/add_thought" method="POST">
+        {% csrf_token %}
+        <textarea cols="120" rows="1" name="thoug"></textarea>
+        <button class="btn btn-primary" type="submit">Adds Thoughts !</button>
+    </form>
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="main" >
+        {% for thought in thoughts %}
+            {{thought.posted.first_name }} says:<p class="post" > {{thought.thought}} </p>
+            
+            {% if current_user == thought.posted %}
+                <a class= "btn btn-danger" href="/thoughts/delete/{{thought.id}}">Delete</a>
+            {% endif %} <br>
+            <a  href="/thoughts/{{thought.id}}">Details</a><br>
+            
+        {% endfor %}
+    </div>
+</body>
+</html>

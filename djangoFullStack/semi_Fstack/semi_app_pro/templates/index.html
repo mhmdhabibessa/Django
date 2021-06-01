@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    
+
+    <style>
+        h1{
+            text-align: center;}
+ body {
+  font-family: Arial;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+a {
+    float: right;
+    font-size: 30px;
+}
+input[type=submit] {
+  width: 100%;
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+        
+    </style>
+</head>
+<body>
+  {% if messages %}
+  <ul class="messages">    
+      {% for message in messages %}    
+          <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+      {% endfor %}
+  </ul>
+  {% endif %}
+
+    <h1> Add a New Show </h1>
+    <a href="/tabels"> go back </a>
+    <div class="container">
+        <form action="/create" method="POST" >
+          {% csrf_token %}
+          
+          <label for="fname">title</label>
+          <input type="text" id="fname" name="title" placeholder="Your ti..">
+      
+          <label for="lname">networke</label>
+          <input type="text" id="lname" name="networke" placeholder="Your last name..">
+            
+          <label for="lname">relaied time</label>
+          <input type="date" id="lname" name="time" placeholder="Your last name.."><br> <br>
+      
+          <div>
+          <label for="lname">Discripton</label><br>
+            <textarea name="discripton" id="" cols="30" rows="10"></textarea>
+        
+        <div>
+        
+          <input type="submit" value="Create">
+        </form>
+      </div>
+</body>
+</html>
